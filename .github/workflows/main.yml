@@ -1,62 +1,28 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>พีระพัฒน์ จันทร์ศรีทอง</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2, h3 {
-            text-align: center;
-        }
-        img {
-            display: block;
-            margin: 0 auto;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        .content {
-            margin-top: 20px;
-        }
-        p {
-            line-height: 1.6;
-        }
-    </style>
-</head>
-<body>
+name: CI Workflow
 
-    <div class="container">
-        <h1>พีระพัฒน์ จันทร์ศรีทอง</h1>
-        <h2>ชื่อเล่น: พี</h2>
-        <h3>สาขาวิชา: เทคโนโลยีดิจิทัลและสารสนเทศ</h3>
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
-        <!-- ใส่รูปภาพของตัวเอง -->
-        <img src="https://cdn.discordapp.com/attachments/799279772025749526/1283093092626599998/untitled.png?ex=66e8548f&is=66e7030f&hm=ea853c5016c7968f435131503ce0c181d120c8e7420b34a4eb638b0848ab9518&-image.jpg" alt="รูปภาพของพีระพัฒน์">
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-        <div class="content">
-            <h3>เหตุผลที่อยากเรียน Full Stack Web Development</h3>
-            <p>เนื่องจาก Full Stack Web Development เป็นทักษะที่มีความสำคัญในยุคดิจิทัล สามารถสร้างและจัดการเว็บไซต์ตั้งแต่ฝั่ง Front-end ไปจนถึง Back-end ได้ ทำให้มีโอกาสในการทำงานที่หลากหลาย และช่วยเพิ่มทักษะด้านการแก้ปัญหาและการคิดเชิงตรรกะที่มีประโยชน์ในการทำงานจริง</p>
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-            <h3>ความคาดหวังต่อวิชานี้</h3>
-            <p>คาดหวังว่าจะได้รับความรู้ที่ครอบคลุมทุกด้านของการพัฒนาเว็บไซต์ สามารถพัฒนาเว็บแอปพลิเคชันที่สามารถทำงานได้จริง และได้มีโอกาสเรียนรู้เครื่องมือและเทคโนโลยีที่ทันสมัยในวงการ</p>
+      - name: Install dependencies
+        run: npm install
 
-            <h3>อะไรคือจุดอ่อนของตัวเองที่เกี่ยวกับทักษะ Programming และแนวทางการพัฒนาจุดอ่อน</h3>
-            <p>จุดอ่อนของตนเองเกี่ยวกับการเขียนโปรแกรมคือความรู้และทักษะด้าน Back-end ที่ยังไม่แข็งแรงพอ แนวทางการพัฒนาเพื่อแก้ไขจุดอ่อนนี้คือการฝึกฝนและทำโปรเจกต์เพิ่มเติม เพื่อเรียนรู้การจัดการฐานข้อมูล การเขียน API และการพัฒนาเซิร์ฟเวอร์อย่างมีประสิทธิภาพ</p>
-        </div>
-    </div>
+      - name: Run tests
+        run: npm test
 
-</body>
-</html>
